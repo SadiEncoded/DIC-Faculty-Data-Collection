@@ -26,7 +26,7 @@ This application serves as a dedicated portal for faculty members to submit thei
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/faculty-app.git
+    git clone https://github.com/SadiEncoded/DIC-Faculty-Data-Collection.git
     cd faculty-app
     ```
 
