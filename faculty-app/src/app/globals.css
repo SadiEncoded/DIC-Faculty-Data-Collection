@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  /* Variables from provided HTML */
+  --primary: #021c3e;
+  --secondary: #169bc8;
+  --accent: #ffd166;
+  --bg: #f9fafb;
+  --border: #e5e7eb;
+  --text: #111827;
+  --foreground: var(--text);
+  --background: var(--bg);
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-background: var(--bg);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-background: var(--bg);
+  --color-foreground: var(--foreground);
+  --font-inter: var(--font-inter);
+  --font-poppins: var(--font-poppins);
+  --font-jetbrains-mono: var(--font-jetbrains-mono);
+}
+
+body {
+  margin: 0;
+  /* linear-gradient(180deg, #ffffff 0%, var(--bg) 100%) */
+  background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+  color: var(--text);
+  min-height: 100vh;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Shadow from HTML */
+.card-shadow {
+  box-shadow: 0 20px 40px rgba(2, 28, 62, 0.12);
+}
+
+/* Input Focus Ring from CSS */
+.input-focus-ring {
+  @apply focus:outline-none focus:border-[#169bc8] focus:ring-[4px] focus:ring-[#169bc8]/15 transition-all duration-200 ease-in-out;
+}
