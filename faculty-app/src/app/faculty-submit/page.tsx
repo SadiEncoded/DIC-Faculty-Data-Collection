@@ -1,5 +1,8 @@
 import { FacultyProfileForm } from '@/components/forms/faculty-profile-form'
 
+// Force dynamic rendering to ensuring the loader (and its delay) runs on every request
+export const dynamic = 'force-dynamic'
+
 export default async function FacultySubmitPage() {
   // Artificial delay (1.5s) to ensure the premium loader is visible
   await new Promise(resolve => setTimeout(resolve, 1500))
