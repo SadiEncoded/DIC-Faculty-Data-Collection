@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function FacultySubmitPage() {
   // Artificial delay (1.5s) to ensure the premium loader is visible
-  await new Promise(resolve => setTimeout(resolve, 1500))
+  await new Promise(resolve => setTimeout(resolve, 2000))
   
   return (
     <div className="relative min-h-screen py-12 px-4 flex items-center justify-center font-sans tracking-custom">

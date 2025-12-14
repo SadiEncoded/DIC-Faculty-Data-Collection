@@ -21,7 +21,7 @@ export async function submitFaculty(prevState: FormState, formData: FormData): P
   const expertise = formData.get('expertise') as string
   const email = formData.get('email') as string
 
-  // Validation
+  // Validate required fields
   if (!email) return { success: false, message: 'Email is required.' }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -30,7 +30,7 @@ export async function submitFaculty(prevState: FormState, formData: FormData): P
   if (!photo || photo.size === 0) return { success: false, message: 'Profile photo is required.' }
 
   try {
-    // Check for duplicates
+    // Check for existing faculty profile with the same email to prevent duplicates
     const { data: existing, error: fetchError } = await supabase
       .from('faculty_profiles')
       .select('id')
@@ -46,7 +46,7 @@ export async function submitFaculty(prevState: FormState, formData: FormData): P
       return { success: false, message: 'A profile with this email already exists.' }
     }
 
-    // Insert faculty data (relying on DB trigger for registration_number)
+    // Insert faculty data. The database trigger 'set_registration_number' will automatically generate the ID.
     const expertiseArray = expertise.split(',').map(s => s.trim()).filter(Boolean)
 
     const { data: insertedData, error: insertError } = await supabase
@@ -75,7 +75,7 @@ export async function submitFaculty(prevState: FormState, formData: FormData): P
       return { success: false, message: 'Failed to generate registration number.' }
     }
 
-    // Upload photo using registration number as filename
+    // Upload the faculty photo using the generated Registration Number as the filename
     const fileExt = photo.name.split('.').pop()
     const fileName = `${insertedData.registration_number}.${fileExt}`
     const arrayBuffer = await photo.arrayBuffer()
@@ -95,7 +95,7 @@ export async function submitFaculty(prevState: FormState, formData: FormData): P
       return { success: false, message: 'Failed to upload photo.' }
     }
 
-    // Get public URL and update the record
+    // Retrieve the public URL for the uploaded photo and update the faculty profile record
     const { data: { publicUrl } } = supabase.storage
       .from('faculty-photos')
       .getPublicUrl(fileName)
